@@ -40,4 +40,4 @@ Then, just include the files in this order:
 <script type="text/javascript" src="includes/js/jquery.mobile.defaults.overrides.js"></script>
 <script type="text/javascript" src="includes/js/jquery.mobile-1.1.0-min.js"></script>
 ```
-Note:  The files are not minified, so it's up to you to concatonate and minify them for best performance.
+Note:  The files are not minified, so it's up to you to concatenate and minify them for best performance.
