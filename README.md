@@ -17,7 +17,7 @@ https://github.com/jquery/jquery-mobile/issues/4535
 
 I fixed it and submitted a pull request to the jQuery Mobile team.  
 
-https://github.com/jquery/jquery-mobile/pull/4536
+https://github.com/jquery/jquery-mobile/pull/4543
 
 If they don't approve the pull request and merge the fix in with the official codebase, then you will need to manually apply the fix for an optimal transition experience.  I'll add to this readme if that scenario presents itself.  
 
