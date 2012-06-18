@@ -21,7 +21,7 @@ https://github.com/jquery/jquery-mobile/pull/4543
 
 If they don't approve the pull request and merge the fix in with the official codebase, then you will need to manually apply the fix for an optimal transition experience.  I'll add to this readme if that scenario presents itself.  
 
-To see what the files included in this repo can do for your transitions, check out the Live Demo of MPDTunes.  Go to http://www.mpdtunes.com/ and click on the "Live Demo" tab and log in.  If you have an Android phone, you should notice less blinkyness and jumpiness in the transitions.  You will also notice the smooth scroll to top rather than the sometimes jarring experience of jumping to top before a transition. 
+To see what the files included in this repo can do for your transitions, check out the Live Demo of MPDTunes.  Go to http://bit.ly/JrhCdZ and click on the "Live Demo" tab and log in.  If you have an Android phone, you should notice less blinkyness and jumpiness in the transitions.  You will also notice the smooth scroll to top rather than the sometimes jarring experience of jumping to top before a transition. 
 
 ### Using the smooth.scrollTo and other transition overrides
 
