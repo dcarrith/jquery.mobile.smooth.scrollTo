@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <title>Jquery.mobile.smooth.scrollto by dcarrith</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Jquery.mobile.smooth.scrollto</h1>
+        <h2>Smooth out your transitions a bit</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/dcarrith/jquery.mobile.smooth.scrollTo/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/dcarrith/jquery.mobile.smooth.scrollTo/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/dcarrith/jquery.mobile.smooth.scrollTo" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>jquery.mobile.smooth.scrollTo</h1>
+
+<p>Using the files provided in this repo will give you more than just the smooth scrollTo that you may or may not have seen in one of the video demonstrations I posted on vimeo.  The jquery.mobile.defaults.overrides.js and jquery.mobile.structure.overrides.css files pretty much completely override most if not all of the CSS3 for the transitions as well as the sequential and simultaneous transition handlers.  </p>
+
+<p>I've been able to get rid of most of the blinks and jumps (most noticeable on the Android platform) with the exception of one blink that sometimes occurs before the start of a transition and one after the transition is complete.  I believe that blink is caused by the fundamental way in which the transitions are implemented.  When the ui-page-active class is added to the $to page at the start of the transition, it seems to sometimes cause a blink.  There doesn't seem to be any way around it because that's how it makes the page visible so it can begin the transition.  Similarly, when the ui-page-active class is removed from the $from page, it sometimes causes another blink.  Overall though, I think the page transition experience is better, but slower.  That's because I had to slow down the transitions to help get rid of some of the blinks and flashes.  </p>
+
+<p>There is another fundamental issue that should be pointed out.  Sometimes, the page transitioning from blinks back into view at the end of the transition.  Similarly, the $to page blinks into view befoe the start of the transition.  This seems to be caused by a lack of browser support for the CSS animation-fill-mode property.  In the jquery.mobile.structure.overrides.css file you will see that I've set the vendor specific animation-fill-mode properties to "both".  That should fix the blink in and/or out of the pages involved with the transition when browsers add support for it.  For an easy test of whether a particular browser supports the animation-fill-mode property, check this page:</p>
+
+<p><a href="http://css3animator.com/examples/animation-fill-mode/both.html">http://css3animator.com/examples/animation-fill-mode/both.html</a></p>
+
+<p>Click the red ball.  It will change to green and start bouncing.  If it returns to red after the transition is over, then your browser does NOT support the animation-fill-mode property and you will likely experience the aforementioned blink in of the to or from pages involved with a transition in jQuery Mobile.  </p>
+
+<p>Last but not least, one of the jumps I had to fix is written up in issue #4535.  </p>
+
+<p><a href="https://github.com/jquery/jquery-mobile/issues/4535">https://github.com/jquery/jquery-mobile/issues/4535</a></p>
+
+<p>I fixed it and submitted a pull request to the jQuery Mobile team.  </p>
+
+<p><a href="https://github.com/jquery/jquery-mobile/pull/4543">https://github.com/jquery/jquery-mobile/pull/4543</a></p>
+
+<p>If they don't approve the pull request and merge the fix in with the official codebase, then you will need to manually apply the fix for an optimal transition experience.  I'll add to this readme if that scenario presents itself.  </p>
+
+<p>To see what the files included in this repo can do for your transitions, check out the Live Demo of MPDTunes.  Go to <a href="http://bit.ly/JrhCdZ">http://bit.ly/JrhCdZ</a> and click on the "Live Demo" tab and log in.  If you have an Android phone, you should notice less blinkyness and jumpiness in the transitions.  You will also notice the smooth scroll to top rather than the sometimes jarring experience of jumping to top before a transition. </p>
+
+<h3>Using the smooth.scrollTo and other transition overrides</h3>
+
+<p>First, you need to download two jQuery plugins, easing v1.3 and scrollTo v1.4.2:  </p>
+
+<p><a href="http://gsgd.co.uk/sandbox/jquery/easing/">http://gsgd.co.uk/sandbox/jquery/easing/</a>
+<a href="http://flesler.blogspot.com/2009/05/jqueryscrollto-142-released.html">http://flesler.blogspot.com/2009/05/jqueryscrollto-142-released.html</a></p>
+
+<p>Then, just include the files in this order:</p>
+
+<div class="highlight">
+<pre><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"includes/css/jquery.mobile.structure-1.1.0.min.css"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"includes/css/jquery.mobile.structure.overrides.css"</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"includes/js/jquery-1.7.2.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"includes/js/jquery.easing.1.3.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"includes/js/jquery.scrollTo-1.4.2.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"includes/js/jquery.mobile.defaults.overrides.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"includes/js/jquery.mobile-1.1.0-min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre>
+</div>
+
+
+<p>Note:  The files are not minified, so it's up to you to concatenate and minify them for best performance.</p>
+      </section>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-1311263-15");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
