@@ -1,7 +1,3 @@
-/*.header {position:fixed;z-index:10;top:0;width:100%}
-.content {padding:45px 15px}
-.footer {position:fixed;z-index:10;bottom:0;width:100%}*/
-
 .ui-content {
     border-width: 0;
     overflow-x: hidden;
@@ -14,9 +10,9 @@
 
 /* Override the default select box style so we can get them to 100% width */
 .ui-field-contain .ui-select {
-    
-    width: 100%;
-    display: inline-block;
+	
+	width: 100%;
+	display: inline-block;
 }
 
 .ui-field-contain input.ui-input-text, .ui-field-contain textarea.ui-input-text {
@@ -24,21 +20,21 @@
 }
 
 .ui-field-contain div.ui-slider {
-    
-    width: 95%;
-    margin-top:0px;
-    margin-left:2.5%;
+	
+	width: 95%;
+	margin-top:0px;
+	margin-left:2.5%;
 }
 
 .input.ui-slider-input, .ui-field-contain input.ui-slider-input {
-    
-    position: absolute;
-    display:none;
+	
+	position: absolute;
+	display:none;
 }
 
 .ui-field-contain label.ui-slider {
-    
-    margin:0;
+	
+	margin:0;
 }
 
 .ui-dialog-contain {
@@ -49,20 +45,20 @@
 }
 
 div#codeigniter_profiler {
-    background-color: #444444 !important;
-    
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index:10;
-    margin-top:42px;
-    margin-bottom:42px;
-    min-height:100%;
-    display:none;
-    min-width:98%;
-    max-width:98%;
-    padding-left:10px;
-    padding-right:10px;
+	background-color: #444444 !important;
+	
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index:10;
+	margin-top:42px;
+	margin-bottom:42px;
+	min-height:100%;
+	display:none;
+	min-width:98%;
+	max-width:98%;
+	padding-left:10px;
+	padding-right:10px;
 }
 
 #recaptcha_image img {  
@@ -119,16 +115,20 @@ div#codeigniter_profiler {
 }
 
 .in {
+    -webkit-animation-fill-mode: both;
     -webkit-animation-timing-function: ease-in;
-    -webkit-animation-duration: 1000ms; 
+    -webkit-animation-duration: 300ms; 
+    -moz-animation-fill-mode: both;
     -moz-animation-timing-function: ease-in;
-    -moz-animation-duration: 1000ms; 
+    -moz-animation-duration: 300ms; 
 }
 .out {
+    -webkit-animation-fill-mode: both;
     -webkit-animation-timing-function: ease-in;
-    -webkit-animation-duration: 1000ms; 
+    -webkit-animation-duration: 300ms; 
+    -moz-animation-fill-mode: both;
     -moz-animation-timing-function: ease-in;
-    -moz-animation-duration: 1000ms; 
+    -moz-animation-duration: 300ms; 
 }
 @-webkit-keyframes fadein {
     from { opacity: 0; }
@@ -158,32 +158,26 @@ div#codeigniter_profiler {
 
     opacity: 0;
 
-    -webkit-animation-fill-mode: both;
-    -webkit-animation-duration: 750ms;
+    -webkit-animation-duration: 350ms;
     -webkit-animation-name: fadeout;
 
-    -moz-animation-fill-mode: both;
-    -moz-animation-duration: 750ms;
+    -moz-animation-duration: 350ms;
     -moz-animation-name: fadeout;
 
-    -ms-animation-fill-mode: both;
-    -ms-animation-duration: 750ms;
+    -ms-animation-duration: 350ms;
     -ms-animation-name: fadeout;
 }
 .fade.in {
 
     opacity: 1;
     
-    -webkit-animation-fill-mode: both;
-    -webkit-animation-duration: 850ms;
+    -webkit-animation-duration: 250ms; /* custom is 500ms - default is 225ms */
     -webkit-animation-name: fadein;
 
-    -moz-animation-fill-mode: both;
-    -moz-animation-duration: 850ms;
+    -moz-animation-duration: 250ms; /* custom is 500ms - default is 225ms */
     -moz-animation-name: fadein;
 
-    -ms-animation-fill-mode: both;
-    -ms-animation-duration: 850ms;
+    -ms-animation-duration: 250ms;
     -ms-animation-name: fadein;
 }
 
@@ -241,21 +235,18 @@ div#codeigniter_profiler {
     -moz-transform:translate3d(0,0,0);
     -ms-transform:translate3d(0,0,0);
 
-    -webkit-animation-fill-mode: both;
     -webkit-animation-name: flipouttoleft;
-    -webkit-animation-duration: 800ms;
+    -webkit-animation-duration: 350ms;
     -webkit-animation-timing-function: ease-in;
     -webkit-backface-visibility: visible;
 
-    -moz-animation-fill-mode: both;
     -moz-animation-name: flipouttoleft;
-    -moz-animation-duration: 800ms;
+    -moz-animation-duration: 350ms;
     -moz-animation-timing-function: ease-in;
     -moz-backface-visibility: visible;
 
-    -ms-animation-fill-mode: both;
     -ms-animation-name: flipouttoleft;
-    -ms-animation-duration: 800ms;
+    -ms-animation-duration: 350ms;
     -ms-animation-timing-function: ease-in;
     -ms-backface-visibility: visible;
 }
@@ -265,21 +256,18 @@ div#codeigniter_profiler {
     -moz-transform:translate3d(0,0,0);
     -ms-transform:translate3d(0,0,0);
 
-    -webkit-animation-fill-mode: both;
     -webkit-animation-name: flipintoright;
-    -webkit-animation-duration: 700ms;
+    -webkit-animation-duration: 250ms;
     -webkit-animation-timing-function: ease-out;
     -moz-backface-visibility: visible;
 
-    -moz-animation-fill-mode: both;
     -moz-animation-name: flipintoright;
-    -moz-animation-duration: 700ms;
+    -moz-animation-duration: 250ms;
     -moz-animation-timing-function: ease-out;
     -moz-backface-visibility: visible;
 
-    -ms-animation-fill-mode: both;
     -ms-animation-name: flipintoright;
-    -ms-animation-duration: 700ms;
+    -ms-animation-duration: 250ms;
     -ms-animation-timing-function: ease-out;
     -ms-backface-visibility: visible;
 }
@@ -324,8 +312,8 @@ div#codeigniter_profiler {
     100% { -moz-transform: translateX(0) scale(1) translateZ(0); }
 }
 .flow {
-    -webkit-transform-origin: 50% 30%;
-    -moz-transform-origin: 50% 30%; 
+    -webkit-transform-origin: 50% 15%;
+    -moz-transform-origin: 50% 15%; 
     -webkit-box-shadow: 0 0 20px rgba(0,0,0,.4);
     -moz-box-shadow: 0 0 20px rgba(0,0,0,.4);
 }
@@ -341,15 +329,13 @@ div#codeigniter_profiler {
     -moz-transform:translate3d(0,0,0);
     -ms-transform:translate3d(0,0,0);
 
-    -webkit-animation-fill-mode: both;
     -webkit-animation-name: flowouttoleft;
     -webkit-animation-timing-function: ease-out;
-    -webkit-animation-duration: 1000ms;
+    -webkit-animation-duration: 400ms;
 
-    -moz-animation-fill-mode: both;
     -moz-animation-name: flowouttoleft;
     -moz-animation-timing-function: ease-out;
-    -moz-animation-duration: 1000ms;
+    -moz-animation-duration: 400ms;
 }
 .flow.in {
 
@@ -357,15 +343,13 @@ div#codeigniter_profiler {
     -moz-transform:translate3d(0,0,0);
     -ms-transform:translate3d(0,0,0);
 
-    -webkit-animation-fill-mode: both;
     -webkit-animation-name: flowinfromright;
     -webkit-animation-timing-function: ease-in;
-    -webkit-animation-duration: 1000ms;
+    -webkit-animation-duration: 400ms;
 
-    -moz-animation-fill-mode: both;
     -moz-animation-name: flowinfromright;
     -moz-animation-timing-function: ease-in;
-    -moz-animation-duration: 1000ms;
+    -moz-animation-duration: 400ms;
 }
 .flow.out.reverse {
 
@@ -373,15 +357,13 @@ div#codeigniter_profiler {
     -moz-transform:translate3d(0,0,0);
     -ms-transform:translate3d(0,0,0);
 
-    -webkit-animation-fill-mode: both;
     -webkit-animation-name: flowouttoright;
     -webkit-animation-timing-function: ease-out;
-    -webkit-animation-duration: 1000ms;
+    -webkit-animation-duration: 400ms;
 
-    -moz-animation-fill-mode: both;
     -moz-animation-name: flowouttoright;
     -moz-animation-timing-function: ease-out;
-    -moz-animation-duration: 1000ms;
+    -moz-animation-duration: 400ms;
 }
 .flow.in.reverse {
 
@@ -389,14 +371,12 @@ div#codeigniter_profiler {
     -moz-transform:translate3d(0,0,0);
     -ms-transform:translate3d(0,0,0);
 
-    -webkit-animation-fill-mode: both;
     -webkit-animation-timing-function: ease-in;
-    -webkit-animation-duration: 1000ms;
+    -webkit-animation-duration: 400ms;
     -webkit-animation-name: flowinfromleft;
 
-    -moz-animation-fill-mode: both;
     -moz-animation-timing-function: ease-in;
-    -moz-animation-duration: 1000ms;
+    -moz-animation-duration: 400ms;
     -moz-animation-name: flowinfromleft;
 }
 
@@ -446,8 +426,8 @@ div#codeigniter_profiler {
     -moz-transform:translate3d(0,0,0);
     -ms-transform:translate3d(0,0,0);
 
-    -webkit-transform-origin: 50% 50%;
-    -moz-transform-origin: 50% 50%;
+    -webkit-transform-origin: 50% 25%;
+    -moz-transform-origin: 50% 25%;
 }
 .pop.in {
 
@@ -458,14 +438,12 @@ div#codeigniter_profiler {
     -ms-transform:translate3d(0,0,0);
 
     -webkit-transform: scale(1);
-    -webkit-animation-fill-mode: both;
     -webkit-animation-name: popin;
-    -webkit-animation-duration: 700ms;
+    -webkit-animation-duration: 400ms;
 
     -moz-transform: scale(1);
-    -moz-animation-fill-mode: both;
     -moz-animation-name: popin;
-    -moz-animation-duration: 700ms;
+    -moz-animation-duration: 400ms;
 }
 .pop.out {
 
@@ -475,13 +453,11 @@ div#codeigniter_profiler {
     -moz-transform:translate3d(0,0,0);
     -ms-transform:translate3d(0,0,0);
 
-    -webkit-animation-fill-mode: both;
     -webkit-animation-name: fadeout;
-    -webkit-animation-duration: 600ms;
+    -webkit-animation-duration: 300ms;
 
-    -moz-animation-fill-mode: both;
     -moz-animation-name: fadeout;
-    -moz-animation-duration: 600ms;
+    -moz-animation-duration: 300ms;
 }
 .pop.in.reverse {
 
@@ -489,11 +465,11 @@ div#codeigniter_profiler {
     -moz-transform:translate3d(0,0,0);
     -ms-transform:translate3d(0,0,0);
 
-    -webkit-animation-fill-mode: both;
     -webkit-animation-name: fadein;
+    -webkit-animation-duration: 300ms;
 
-    -moz-animation-fill-mode: both;
     -moz-animation-name: fadein;
+    -moz-animation-duration: 300ms;
 }
 .pop.out.reverse {
 
@@ -502,12 +478,12 @@ div#codeigniter_profiler {
     -ms-transform:translate3d(0,0,0);
 
     -webkit-transform: scale(.8);
-    -webkit-animation-fill-mode: both;
     -webkit-animation-name: popout;
-
+    -webkit-animation-duration: 400ms;
+    
     -moz-transform: scale(.8);
-    -moz-animation-fill-mode: both;
     -moz-animation-name: popout;
+    -moz-animation-duration: 400ms;
 }
 
 @-webkit-keyframes slideinfromright {
@@ -541,6 +517,8 @@ div#codeigniter_profiler {
 @-moz-keyframes slideouttoleft {
     from { -moz-transform: translateX(0) translateZ(0); }
     to { -moz-transform: translateX(-100%) translateZ(0); }
+    /*from { width: 100%; }
+    to { width: 0; }*/
 }
 @-ms-keyframes slideouttoleft {
     from { -moz-transform: translateX(0) translateZ(0); }
@@ -566,23 +544,20 @@ div#codeigniter_profiler {
     -moz-transform:translate3d(0,0,0);
     -ms-transform:translate3d(0,0,0);
 
-    -webkit-animation-fill-mode: both;
     -webkit-animation-name: slideouttoleft;
-    -webkit-animation-duration: 1000ms;
+    -webkit-animation-duration: 250ms;
     -webkit-animation-iteration-count:1;
     -webkit-animation-delay:0;
     -webkit-animation-timing-function:ease-out;
 
-    -moz-animation-fill-mode: both;
     -moz-animation-name: slideouttoleft;
-    -moz-animation-duration: 1000ms;
+    -moz-animation-duration: 250ms;
     -moz-animation-iteration-count:1;
     -moz-animation-delay:0;
     -moz-animation-timing-function:ease-out;
 
-    -ms-animation-fill-mode: both;
     -ms-animation-name: slideouttoleft;
-    -ms-animation-duration: 1000ms;
+    -ms-animation-duration: 250ms;
     -ms-animation-iteration-count:1;
     -ms-animation-delay:0;
     -ms-animation-timing-function:ease-out;
@@ -595,23 +570,20 @@ div#codeigniter_profiler {
     -moz-transform:translate3d(0,0,0);
     -ms-transform:translate3d(0,0,0);
 
-    -webkit-animation-fill-mode: both;
     -webkit-animation-name: slideinfromright;
-    -webkit-animation-duration: 1000ms;
+    -webkit-animation-duration: 250ms;
     -webkit-animation-iteration-count:1;     
     -webkit-animation-delay:0;
     -webkit-animation-timing-function:ease-out;
 
-    -moz-animation-fill-mode: both;
     -moz-animation-name: slideinfromright;
-    -moz-animation-duration: 1000ms;
+    -moz-animation-duration: 250ms;
     -moz-animation-iteration-count:1;
     -moz-animation-delay:0;
     -moz-animation-timing-function:ease-out;
 
-    -ms-animation-fill-mode: both;
     -ms-animation-name: slideinfromright;
-    -ms-animation-duration: 1000ms;
+    -ms-animation-duration: 250ms;
     -ms-animation-iteration-count:1;
     -ms-animation-delay:0;
     -ms-animation-timing-function:ease-out;
@@ -624,23 +596,20 @@ div#codeigniter_profiler {
     -moz-transform:translate3d(0,0,0);
     -ms-transform:translate3d(0,0,0);
 
-    -webkit-animation-fill-mode: both;
     -webkit-animation-name: slideouttoright;
-    -webkit-animation-duration: 1000ms;
+    -webkit-animation-duration: 250ms;
     -webkit-animation-iteration-count:1;     
     -webkit-animation-delay:0;
     -webkit-animation-timing-function:ease-out;
 
-    -moz-animation-fill-mode: both;
     -moz-animation-name: slideouttoright;
-    -moz-animation-duration: 1000ms;
+    -moz-animation-duration: 250ms;
     -moz-animation-iteration-count:1;
     -moz-animation-delay:0;
     -moz-animation-timing-function:ease-out;
 
-    -ms-animation-fill-mode: both;
     -ms-animation-name: slideouttoright;
-    -ms-animation-duration: 1000ms;
+    -ms-animation-duration: 250ms;
     -ms-animation-iteration-count:1;
     -ms-animation-delay:0;
     -ms-animation-timing-function:ease-out;
@@ -653,23 +622,20 @@ div#codeigniter_profiler {
     -moz-transform:translate3d(0,0,0);
     -ms-transform:translate3d(0,0,0);
 
-    -webkit-animation-fill-mode: both;
     -webkit-animation-name: slideinfromleft;
-    -webkit-animation-duration: 1000ms;
+    -webkit-animation-duration: 250ms;
     -webkit-animation-iteration-count:1;     
     -webkit-animation-delay:0;
     -webkit-animation-timing-function:ease-out;
 
-    -moz-animation-fill-mode: both;
     -moz-animation-name: slideinfromleft;
-    -moz-animation-duration: 1000ms;
+    -moz-animation-duration: 250ms;
     -moz-animation-iteration-count:1;
     -moz-animation-delay:0;
     -moz-animation-timing-function:ease-out;
 
-    -ms-animation-fill-mode: both;
     -ms-animation-name: slideinfromleft;
-    -ms-animation-duration: 1000ms;
+    -ms-animation-duration: 250ms;
     -ms-animation-iteration-count:1;
     -ms-animation-delay:0;
     -ms-animation-timing-function:ease-out;
@@ -678,96 +644,96 @@ div#codeigniter_profiler {
 .slidedown.out {
     -webkit-animation-name: fadeout;
     -moz-animation-name: fadeout;
-    -webkit-animation-duration: 600ms;
-    -moz-animation-duration: 600ms;
+    -webkit-animation-duration: 300ms;
+    -moz-animation-duration: 300ms;
 }
 .slidedown.in {
     -webkit-transform: translateY(0);
     -webkit-animation-name: slideinfromtop;
     -moz-transform: translateY(0);
     -moz-animation-name: slideinfromtop;
-    -webkit-animation-duration: 700ms;
-    -moz-animation-duration: 700ms;
+    -webkit-animation-duration: 400ms;
+    -moz-animation-duration: 400ms;
 }
 .slidedown.in.reverse {
     -webkit-animation-name: fadein;
     -moz-animation-name: fadein;
-    -webkit-animation-duration: 600ms;
-    -moz-animation-duration: 600ms;
+    -webkit-animation-duration: 300ms;
+    -moz-animation-duration: 300ms;
 }
 .slidedown.out.reverse {
     -webkit-transform: translateY(-100%);
     -moz-transform: translateY(-100%);
     -webkit-animation-name: slideouttotop;
     -moz-animation-name: slideouttotop;
-    -webkit-animation-duration: 700ms;
-    -moz-animation-duration: 700ms;
+    -webkit-animation-duration: 400ms;
+    -moz-animation-duration: 400ms;
 }
 .slidefade.out {
     -webkit-transform: translateX(-100%);
     -webkit-animation-name: slideouttoleft;
     -moz-transform: translateX(-100%);
     -moz-animation-name: slideouttoleft;
-    -webkit-animation-duration: 500ms;
-    -moz-animation-duration: 500ms;
+    -webkit-animation-duration: 300ms;
+    -moz-animation-duration: 300ms;
 }
 .slidefade.in {
     -webkit-transform: translateX(0);
     -webkit-animation-name: fadein;
     -moz-transform: translateX(0);
     -moz-animation-name: fadein;
-    -webkit-animation-duration: 500ms;
-    -moz-animation-duration: 500ms;
+    -webkit-animation-duration: 300ms;
+    -moz-animation-duration: 300ms;
 }
 .slidefade.in.reverse {
     -webkit-transform: translateX(0);
     -webkit-animation-name: fadein;
     -moz-transform: translateX(0);
     -moz-animation-name: fadein;
-    -webkit-animation-duration: 500ms;
-    -moz-animation-duration: 500ms;
+    -webkit-animation-duration: 300ms;
+    -moz-animation-duration: 300ms;
 }
 .slideup.out {
     -webkit-animation-name: fadeout;
     -moz-animation-name: fadeout;
-    -webkit-animation-duration: 600ms;
-    -moz-animation-duration: 600ms;
+    -webkit-animation-duration: 300ms;
+    -moz-animation-duration: 300ms;
 }
 .slideup.in {
     -webkit-transform: translateY(0);
     -webkit-animation-name: slideinfrombottom;
     -moz-transform: translateY(0);
     -moz-animation-name: slideinfrombottom;
-    -webkit-animation-duration: 700ms;
-    -moz-animation-duration: 700ms;
+    -webkit-animation-duration: 300ms;
+    -moz-animation-duration: 300ms;
 }
 .slideup.in.reverse {
     -webkit-animation-name: fadein;
     -moz-animation-name: fadein;
-    -webkit-animation-duration: 600ms;
-    -moz-animation-duration: 600ms;
+    -webkit-animation-duration: 300ms;
+    -moz-animation-duration: 300ms;
 }
 .slideup.out.reverse {
     -webkit-transform: translateY(100%);
     -moz-transform: translateY(100%);
     -webkit-animation-name: slideouttobottom;
     -moz-animation-name: slideouttobottom;
-    -webkit-animation-duration: 700ms;
-    -moz-animation-duration: 700ms;
+    -webkit-animation-duration: 300ms;
+    -moz-animation-duration: 300ms;
 }
 .turn.out {
     -webkit-transform: rotateY(-90deg) scale(.9);
     -webkit-animation-name: flipouttoleft;
     -moz-transform: rotateY(-90deg) scale(.9);
     -moz-animation-name: flipouttoleft;
-    -webkit-animation-duration: 700ms;
-    -moz-animation-duration: 700ms;
+    -webkit-animation-duration: 400ms;
+    -moz-animation-duration: 400ms;
 }
 .turn.in {
     -webkit-animation-name: flipintoright;
     -moz-animation-name: flipintoright;
-    -webkit-animation-duration: 600ms;
-    -moz-animation-duration: 600ms;
+    -webkit-animation-duration: 300ms;
+    -moz-animation-duration: 300ms;
     
 }
 .ui-page-header-fixed-pre-out {
@@ -819,4 +785,15 @@ div#codeigniter_profiler {
     -webkit-perspective: 1000;
     -moz-perspective: 1000;
     position: absolute;
+}
+
+.ui-li-aside { 
+    float: right; 
+    width: 40px; 
+    text-align: right; 
+    margin: .3em 0; 
+
+}
+@media all and (min-width: 480px){
+     .ui-li-aside { width: 40px; }
 }

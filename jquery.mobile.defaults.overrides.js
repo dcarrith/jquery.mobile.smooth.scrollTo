@@ -1,4 +1,4 @@
-$( document ).bind( "mobileinit", function() {
+$(document).bind("mobileinit", function() {
 
     // These should enable cross domain requests
     $.support.cors = true;
@@ -19,21 +19,8 @@ $( document ).bind( "mobileinit", function() {
     // We do not use cached pages, so we'd rather have this set to zero so that there is no delay
     $.mobile.loadPage.defaults.loadMsgDelay = 75;
 
-    //animation complete callback override
-    /*$.fn.animationComplete = function( callback ) {
-        
-        alert("inside overridden animationComplete");
-
-        if( $.support.cssTransitions ) {
-        
-            return $( this ).one( 'webkitAnimationEnd animationend', callback );
-        
-        }else{
-        
-            callback.call();
-            return $( this );
-        }
-    };*/
+    // Turn off the tap to toggle functionality for fixed toolbars
+    $.mobile.fixedtoolbar.tapToggle = false;
 
     // We want to override the updatePagePadding function of the fixedtoolbar prototype 
     // We need to do this so it doesn't update page padding since we will be dropping fixed
@@ -63,10 +50,8 @@ $( document ).bind( "mobileinit", function() {
             var deferred = new $.Deferred(),
                 reverseClass = reverse ? " reverse" : "",
                 active  = $.mobile.urlHistory.getActive(),
-                toScroll = ($to.toPageScrollTo || active.lastScroll) || $.mobile.defaultHomeScroll,
+                toScroll = ( $to.toPageScrollTo || active.lastScroll ) || $.mobile.defaultHomeScroll,
                 screenHeight = $.mobile.getScreenHeight(),
-                documentHeight = $(document).height(),
-                bodyHeight = $('body').height(),
                 maxTransitionOverride = $.mobile.maxTransitionWidth !== false && $( window ).width() > $.mobile.maxTransitionWidth,
                 none = !$.support.cssTransitions || maxTransitionOverride || !name || name === "none",
                 toPreClass = " ui-page-pre-in",
@@ -75,11 +60,8 @@ $( document ).bind( "mobileinit", function() {
                 fixedFooterHeight = 48, // To account for - .ui-page-footer-fixed { padding-bottom: 3em; } - from jquery.mobile.structure-1.1.0.css
                 extraGhostPadding = 5,
                 scrollToDuration = 1250,
-                waitToFadeFootersOut = 100,
-                waitToFadeFootersIn = 100,
-                whattheheck = true,
-                footerFadeOutDuration = 250,
-                footerFadeInDuration = 250,
+                footerFadeOutDuration = 200,
+                footerFadeInDuration = 200,
                 toggleViewportClass = function(){
                     
                     // This line adds the following style to the pageContainer
@@ -193,9 +175,6 @@ $( document ).bind( "mobileinit", function() {
 
                     pageHasFixedFooter = false || pageHasFixedFooter;
 
-                    // Start it at zero so we have something to check against later
-                    var totalHeight = 0;
-
                     $page = ( ( which == 'from' ) ? $from : $to );
 
                     // The to page will need some pre and post handling so everything can go in a smooth sequence
@@ -203,35 +182,6 @@ $( document ).bind( "mobileinit", function() {
 
                         // Set the to page opacity to 0 before setting display block and overflow visible
                         $to.addClass( 'ui-to-page-pre-transition' );
-
-                        // Setting display block and overflow visible
-                        $to.addClass( $.mobile.activePageClass );
-                    }
-
-                    defaultTotalHeight = ( ( which == 'from') ? ( screenHeight + $( window ).scrollTop() ) : ( ( screenHeight ) + toScroll ) );
-
-                    // Let's calculate the height of $page based on the children of the main element (which theoretically should always be a page)
-                    //$($page).children().each( function(index) {
-
-                    //    totalHeight += $(this).height();
-                    //});
-
-                    if ( totalHeight == 0 ) {
-
-                        // Use the old value as the fallback value
-                        totalHeight = defaultTotalHeight;
-                    }
-
-                    if ( totalHeight > defaultTotalHeight ) {
-
-                        // This is where we need to figure out how to handle the adjustments to the animation origins
-                    }
-
-                    // The to page will need some pre and post handling so everything can go in a smooth sequence
-                    if ( which == 'to' ) {
-
-                        // Removing the display block and overflow visible styles from page
-                        $to.removeClass( $.mobile.activePageClass );
                     }
 
                     if (which == 'from') {
@@ -253,7 +203,7 @@ $( document ).bind( "mobileinit", function() {
                                 .removeClass("ui-footer-fixed");
                         }
 
-                    } else {
+                    } else { // must be the to page
 
                         // get the footer object for the $to page
                         $footer = getFooter( 'to' );
@@ -290,14 +240,37 @@ $( document ).bind( "mobileinit", function() {
 
                         // for some reason, the data-role="content" div was losing it's class="ui-content" so let's 
                         // first remove it in case it is there and then add it back in
-                        $to.find('div[data-role="content"]').removeClass("ui-content").addClass("ui-content");
+                        //$to.find('div[data-role="content"]').removeClass("ui-content").addClass("ui-content");
                     }
 
-                    // set the page height based on the aggregate heights of the page's immediate children
-                    $page.height( totalHeight );
+                    // just set the page height to screenHeight * 2 so the page doesn't look truncated during transitions that use scaling
+                    $page.height( screenHeight * 2 );
                 },
 
-                startOut = function(){
+                setToPageHeight = function() {
+
+                    // Start it at zero so we have something to check against later
+                    var totalHeight = 0;
+
+                    defaultTotalHeight = ( ( screenHeight ) + toScroll );
+
+                    // Let's calculate the height of $page based on the children of the main element (which theoretically should always be a page)
+                    $($to).children().each( function( index ) {
+
+                        totalHeight += $( this ).height();
+                    });
+
+                    if ( totalHeight === 0 ) {
+
+                        // Use the old value as the fallback value
+                        totalHeight = defaultTotalHeight;
+                    }
+
+                    // set the to page's height
+                    $to.height( totalHeight );
+                },
+
+                startOut = function() {
 
                     // get the footer object for the $to page
                     $footer = getFooter( 'from' );
@@ -439,10 +412,10 @@ $( document ).bind( "mobileinit", function() {
                     // Remove the opacity 0 setting before setting display block and overflow visible
                     $to.removeClass( 'ui-to-page-pre-transition' );
 
+                    $to.addClass( name + " in" + reverseClass);
+
                     // Setting display block and overflow visible
                     $to.addClass( $.mobile.activePageClass );  
-
-                    $to.addClass( name + " in" + reverseClass);
 
                     if( none ){
                         doneIn();
@@ -467,6 +440,9 @@ $( document ).bind( "mobileinit", function() {
 
                     // Clean up the $to page
                     cleanTo( $footer, pageHasFixedFooter );
+
+                    // Set the to page height to what it should be
+                    setToPageHeight();
 
                     // Send focus to page as it is now display: block
                     $.mobile.focusPage( $to );
@@ -520,8 +496,11 @@ $( document ).bind( "mobileinit", function() {
                         }
                     }
 
-                    // Toggle the ui-mobile-viewport-transitioning and viewport-<transition name> classes
-                    toggleViewportClass();
+                    if ( $from ) {
+
+                        // Toggle the ui-mobile-viewport-transitioning and viewport-<transition name> classes
+                        toggleViewportClass();
+                    }
 
                     // resolve the deferred promise
                     deferred.resolve( name, reverse, $to, $from, true );
@@ -562,6 +541,7 @@ $( document ).bind( "mobileinit", function() {
 
     // Use the simultaneous transition handler for slide transitions
     $.mobile.transitionHandlers.slide = $.mobile.transitionHandlers.simultaneous;
+    
 
     // This should set the transitionFallbacks
     $.mobile.transitionFallbacks.fade       = "fade";
@@ -573,164 +553,6 @@ $( document ).bind( "mobileinit", function() {
     $.mobile.transitionFallbacks.slide      = "slide";
     $.mobile.transitionFallbacks.slideup    = "slideup";
     $.mobile.transitionFallbacks.slidedown  = "slidedown";
-
-    // Override the default transitions to fix an issue caused by the rewrite of the click handler
-    /*var createHandler = function( sequential ){
-        
-        // Default to sequential
-        if( sequential === undefined ){
-            sequential = true;
-        }
-        
-        return function( name, reverse, $to, $from ) {
-
-            var deferred = new $.Deferred(),
-                reverseClass = reverse ? " reverse" : "",
-                active  = $.mobile.urlHistory.getActive(),
-                toScroll = ($to.toPageScrollTo || active.lastScroll) || $.mobile.defaultHomeScroll,
-                screenHeight = $.mobile.getScreenHeight(),
-                maxTransitionOverride = $.mobile.maxTransitionWidth !== false && $( window ).width() > $.mobile.maxTransitionWidth,
-                none = !$.support.cssTransitions || maxTransitionOverride || !name || name === "none",
-                toPreClass = " ui-page-pre-in",
-                toggleViewportClass = function(){
-                    $.mobile.pageContainer.toggleClass( "ui-mobile-viewport-transitioning viewport-" + name );
-                },
-                scrollPage = function(){
-                    // By using scrollTo instead of silentScroll, we can keep things better in order
-                    // Just to be precautios, disable scrollstart listening like silentScroll would
-                    $.event.special.scrollstart.enabled = false;
-                    
-                    window.scrollTo( 0, toScroll );
-                    
-                    // reenable scrollstart listening like silentScroll would
-                    setTimeout(function() {
-                        $.event.special.scrollstart.enabled = true;
-                    }, 150 );
-                },
-                cleanFrom = function(){
-                    $from
-                        .removeClass( $.mobile.activePageClass + " out in reverse " + name )
-                        .height( "" );
-                },
-                startOut = function(){
-                    // if it's not sequential, call the doneOut transition to start the TO page animating in simultaneously
-                    if( !sequential ){
-                        doneOut();
-                    }
-                    else {
-                        $from.animationComplete( doneOut ); 
-                    }
-                    
-                    // Set the from page's height and start it transitioning out
-                    // Note: setting an explicit height helps eliminate tiling in the transitions
-                    $from
-                        .height( screenHeight + $(window ).scrollTop() )
-                        .addClass( name + " out" + reverseClass );
-                },
-                
-                doneOut = function() {
-
-                    if ( $from && sequential ) {
-                        cleanFrom();
-                    }
-                    
-                    startIn();
-                },
-                
-                startIn = function(){   
-                
-                    // for some reason, the data-role="content" div was losing it's class="ui-content" so let's 
-                    // first remove it in case it is there and then add it back in
-                    $to.find('div[data-role="content"]').removeClass("ui-content").addClass("ui-content");
-
-                    $to.addClass( $.mobile.activePageClass + toPreClass );              
-                
-                    // Send focus to page as it is now display: block
-                    $.mobile.focusPage( $to );
-
-                    // Set to page height
-                    $to.height( screenHeight + toScroll );
-                    
-                    scrollPage();
-                    
-                    if( !none ){
-                        $to.animationComplete( doneIn );
-                    }
-
-                    $to
-                        .removeClass( toPreClass )
-                        .addClass( name + " in" + reverseClass );
-                    
-                    if( none ){
-                        doneIn();
-                    }
-                    
-                },
-            
-                doneIn = function() {
-                
-                    if ( !sequential ) {
-                        
-                        if( $from ){
-                            cleanFrom();
-                        }
-                    }
-                
-                    $to
-                        .removeClass( "out in reverse " + name )
-                        .height( "" );
-                    
-                    toggleViewportClass();
-                    
-                    // In some browsers (iOS5), 3D transitions block the ability to scroll to the desired location during transition
-                    // This ensures we jump to that spot after the fact, if we aren't there already.
-                    if( $( window ).scrollTop() !== toScroll ){
-                        scrollPage();
-                    }
-
-                    deferred.resolve( name, reverse, $to, $from, true );
-                };
-
-            toggleViewportClass();
-        
-            if ( $from && !none ) {
-                startOut();
-            }
-            else {
-                doneOut();
-            }
-
-            return deferred.promise();
-        };
-    }
-
-    // generate the handlers from the above
-    var sequentialHandler = createHandler(),
-        simultaneousHandler = createHandler( false );
-
-    // Make our transition handler the public default.
-    $.mobile.defaultTransitionHandler = sequentialHandler;
-
-    //transition handler dictionary for 3rd party transitions
-    $.mobile.transitionHandlers = {
-        "default": $.mobile.defaultTransitionHandler,
-        "sequential": sequentialHandler,
-        "simultaneous": simultaneousHandler
-    };
-
-    // Use the simultaneous transition handler for slide transitions
-    $.mobile.transitionHandlers.slide = $.mobile.transitionHandlers.simultaneous;
-
-    // This should set the transitionFallbacks
-    $.mobile.transitionFallbacks.fade       = "fade";
-    $.mobile.transitionFallbacks.pop        = "fade";
-    $.mobile.transitionFallbacks.flip       = "fade";
-    $.mobile.transitionFallbacks.turn       = "fade";
-    $.mobile.transitionFallbacks.flow       = "fade";
-    $.mobile.transitionFallbacks.slidefade  = "fade";
-    $.mobile.transitionFallbacks.slide      = "fade";
-    $.mobile.transitionFallbacks.slideup    = "fade";
-    $.mobile.transitionFallbacks.slidedown  = "fade";*/
 
 });
 
